@@ -1,6 +1,5 @@
 function main() {
     updateHTML();
-    console.log(getCurrentHour())
     setTimeout(main, 1000);
 }
 
