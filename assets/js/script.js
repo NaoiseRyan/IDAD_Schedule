@@ -11,11 +11,11 @@ function updateHTML() {
 function updateCurrentClass() {
     let currentHour = getCurrentHour();
     let currentClassTime = currentHour - 8;
-    let currentDay = new Date().getDay() - 1;
+    let currentDay = new Date().getDay();
     let timetableId = document.getElementsByTagName("table");
 
-    if (isClassTimeValid()) {
-        let currentCell =  timetableId[0].rows[currentClassTime].cells[currentDay]
+    if (isClassTimeValid() == true) {
+        let currentCell =  timetableId[0].rows[currentClassTime].cells[currentDay];
         currentCell.style.backgroundColor = "red";
         currentCell.style.color = "white";
     }
@@ -47,12 +47,13 @@ function updateCurrentClass() {
 
 function isClassTimeValid() {
     let returnType = false;
-    if (getCurrentHour() >= 9 && getCurrentHour <= 16 && getCurrentDay() != "Saturday" && getCurrentDay() != "Sunday") {
+    if (getCurrentHour() >= 9 && getCurrentHour() <= 16 && getCurrentDay() != "Saturday" && getCurrentDay() != "Sunday") {
         returnType = true;
     }
     else {
         returnType = false;
     }
+
     return returnType;
 }
 
@@ -88,22 +89,5 @@ function getCurrentHour() {
     let currentHour = new Date().getHours();
     return currentHour
 }
-
-
-var timeTable =
-    [
-        [1, 1, 2, 2, 0, 3, 4, 1],
-        [2, 3, 2, 0, 4, 4, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [1, 1, 3, 3, 0, 0, 0, 0],
-        [0, 0, 3, 3, 0, 0, 0, 0]
-    ]
-/*
-    0 = No class 
-    1 = Intro to 3d Digital Art
-    2 = Ui Prototyping
-    3 = Web Ui Design
-    4 = Design Psycology
-*/
 
 window.onload = main();
