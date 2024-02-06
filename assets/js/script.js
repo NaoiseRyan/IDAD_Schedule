@@ -9,50 +9,36 @@ function updateHTML() {
 }
 
 function updateCurrentClass() {
-    var currentHour = getCurrentHour();
-    var currentClassTime = currentHour - 8;
-    var timetableId = document.getElementsByTagName("table");
+    let currentHour = getCurrentHour();
+    let currentClassTime = currentHour - 8;
+    let currentDay = new Date().getDay() - 1;
+    let timetableId = document.getElementsByTagName("table");
+
+    if (isClassTimeValid()) {
+        let currentCell =  timetableId[0].rows[currentClassTime].cells[currentDay]
+        currentCell.style.backgroundColor = "red";
+        currentCell.style.color = "white";
+    }
     switch (getCurrentDay()) {
         case "Monday":
             document.getElementById("mondayId").style.backgroundColor = "rgb(0, 162, 255)";
             document.getElementById("mondayId").style.color = "white";
-            if (isClassTimeValid()) {
-                timetableId[0].rows[currentClassTime].cells[1].style.backgroundColor = "red";
-                timetableId[0].rows[currentClassTime].cells[1].style.color = "white";
-            }
             break;
         case "Tuesday":
             document.getElementById("tuesdayId").style.backgroundColor = "rgb(0, 162, 255)";
             document.getElementById("tuesdayId").style.color = "white";
-            if (isClassTimeValid()) {
-                timetableId[0].rows[currentClassTime].cells[2].style.backgroundColor = "red";
-                timetableId[0].rows[currentClassTime].cells[2].style.color = "white";
-            }
             break;
         case "Wednesday":
             document.getElementById("wednesdayId").style.backgroundColor = "rgb(0, 162, 255)";
             document.getElementById("wednesdayId").style.color = "white";
-            if (isClassTimeValid()) {
-                timetableId[0].rows[currentClassTime].cells[3].style.backgroundColor = "red";
-                timetableId[0].rows[currentClassTime].cells[3].style.color = "white";
-            }
             break;
         case "Thursday":
             document.getElementById("thursdayId").style.backgroundColor = "rgb(0, 162, 255)";
             document.getElementById("thursdayId").style.color = "white";
-            if (isClassTimeValid()) {
-                timetableId[0].rows[currentClassTime].cells[4].style.backgroundColor = "red";
-                timetableId[0].rows[currentClassTime].cells[4].style.color = "white";
-
-            }
             break;
         case "Friday":
             document.getElementById("fridayId").style.backgroundColor = "rgb(0, 162, 255)";
             document.getElementById("fridayId").style.color = "white";
-            if (isClassTimeValid()) {
-                timetableId[0].rows[currentClassTime].cells[5].style.backgroundColor = "red";
-                timetableId[0].rows[currentClassTime].cells[5].style.color = "white";
-            }
             break;
         default:
             break;
