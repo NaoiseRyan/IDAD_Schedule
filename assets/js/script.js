@@ -47,7 +47,7 @@ function updateCurrentClass() {
 
 function isClassTimeValid() {
     let returnType = false;
-    if (getCurrentHour() >= 9 && getCurrentHour <= 16) {
+    if (getCurrentHour() >= 9 && getCurrentHour <= 16 && getCurrentDay() != "Saturday" && getCurrentDay() != "Sunday") {
         returnType = true;
     }
     else {
