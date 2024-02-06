@@ -5,42 +5,69 @@ function main() {
 
 function updateHTML() {
     document.getElementById("currentDayId").textContent = getCurrentDay();
-    let inClassTimeRange = isClassTimeRange();
-    console.log(inClassTimeRange)
+    updateCurrentClass();
 }
 
-function isClassTimeRange() {
-    let currentHour = getCurrentHour();
-    let isWithinRange = false;
+function updateCurrentClass() {
+    var currentHour = getCurrentHour();
+    var currentClassTime = currentHour - 8;
+    var timetableId = document.getElementsByTagName("table");
     switch (getCurrentDay()) {
         case "Monday":
-            if (currentHour >= 9 && currentHour <= 16) {
-                isWithinRange = true;
+            document.getElementById("mondayId").style.backgroundColor = "rgb(0, 162, 255)";
+            document.getElementById("mondayId").style.color = "white";
+            if (isClassTimeValid()) {
+                timetableId[0].rows[currentClassTime].cells[1].style.backgroundColor = "red";
+                timetableId[0].rows[currentClassTime].cells[1].style.color = "white";
             }
             break;
         case "Tuesday":
-            if (currentHour >= 9 && currentHour <= 14) {
-                isWithinRange = true;
+            document.getElementById("tuesdayId").style.backgroundColor = "rgb(0, 162, 255)";
+            document.getElementById("tuesdayId").style.color = "white";
+            if (isClassTimeValid()) {
+                timetableId[0].rows[currentClassTime].cells[2].style.backgroundColor = "red";
+                timetableId[0].rows[currentClassTime].cells[2].style.color = "white";
             }
             break;
         case "Wednesday":
-                isWithinRange = false;
+            document.getElementById("wednesdayId").style.backgroundColor = "rgb(0, 162, 255)";
+            document.getElementById("wednesdayId").style.color = "white";
+            if (isClassTimeValid()) {
+                timetableId[0].rows[currentClassTime].cells[3].style.backgroundColor = "red";
+                timetableId[0].rows[currentClassTime].cells[3].style.color = "white";
+            }
             break;
         case "Thursday":
-            if (currentHour >= 9 && currentHour <= 12) {
-                isWithinRange = true;
+            document.getElementById("thursdayId").style.backgroundColor = "rgb(0, 162, 255)";
+            document.getElementById("thursdayId").style.color = "white";
+            if (isClassTimeValid()) {
+                timetableId[0].rows[currentClassTime].cells[4].style.backgroundColor = "red";
+                timetableId[0].rows[currentClassTime].cells[4].style.color = "white";
+
             }
             break;
         case "Friday":
-            if (currentHour >= 11 && currentHour <= 12) {
-                isWithinRange = true;
+            document.getElementById("fridayId").style.backgroundColor = "rgb(0, 162, 255)";
+            document.getElementById("fridayId").style.color = "white";
+            if (isClassTimeValid()) {
+                timetableId[0].rows[currentClassTime].cells[5].style.backgroundColor = "red";
+                timetableId[0].rows[currentClassTime].cells[5].style.color = "white";
             }
             break;
         default:
-            isWithinRange = false;
             break;
     }
-    return isWithinRange;
+}
+
+function isClassTimeValid() {
+    let returnType = false;
+    if (getCurrentHour() >= 9 && getCurrentHour <= 16) {
+        returnType = true;
+    }
+    else {
+        returnType = false;
+    }
+    return returnType;
 }
 
 function getCurrentDay() {

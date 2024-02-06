@@ -32,12 +32,11 @@ td {
     overflow-x: scroll;
 }
 
-
 @media only screen and (min-width: 1200px) {
     h1,
     h2 {
         padding-top: 10px;
-        padding-bottom: 20px;
+        padding-bottom: 5px;
     }
 
     td {
