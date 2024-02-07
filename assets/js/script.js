@@ -1,4 +1,7 @@
 function main() {
+    if(getCurrentHour() != pageLoadedHour){
+        location.reload();
+    }
     updateHTML();
     setTimeout(main, 1000);
 }
@@ -15,33 +18,17 @@ function updateCurrentClass() {
     let timetableId = document.getElementsByTagName("table");
 
     if (isClassTimeValid() == true) {
-        let currentCell =  timetableId[0].rows[currentClassTime].cells[currentDay];
-        currentCell.style.backgroundColor = "red";
-        currentCell.style.color = "white";
-    }
-    switch (getCurrentDay()) {
-        case "Monday":
-            document.getElementById("mondayId").style.backgroundColor = "rgb(0, 162, 255)";
-            document.getElementById("mondayId").style.color = "white";
-            break;
-        case "Tuesday":
-            document.getElementById("tuesdayId").style.backgroundColor = "rgb(0, 162, 255)";
-            document.getElementById("tuesdayId").style.color = "white";
-            break;
-        case "Wednesday":
-            document.getElementById("wednesdayId").style.backgroundColor = "rgb(0, 162, 255)";
-            document.getElementById("wednesdayId").style.color = "white";
-            break;
-        case "Thursday":
-            document.getElementById("thursdayId").style.backgroundColor = "rgb(0, 162, 255)";
-            document.getElementById("thursdayId").style.color = "white";
-            break;
-        case "Friday":
-            document.getElementById("fridayId").style.backgroundColor = "rgb(0, 162, 255)";
-            document.getElementById("fridayId").style.color = "white";
-            break;
-        default:
-            break;
+        let currentClassCell =  timetableId[0].rows[currentClassTime].cells[currentDay];
+        currentClassCell.style.backgroundColor = "rgb(0, 162, 255)";
+        currentClassCell.style.color = "white";
+
+        let currentTimeCell =  timetableId[0].rows[currentClassTime].cells[0]; 
+        currentTimeCell.style.backgroundColor = "rgb(0, 162, 255)";
+        currentTimeCell.style.color = "white";
+
+        let currentDayCell =  timetableId[0].rows[0].cells[currentDay]; 
+        currentDayCell.style.backgroundColor = "rgb(0, 162, 255)";
+        currentDayCell.style.color = "white";   
     }
 }
 
@@ -89,5 +76,7 @@ function getCurrentHour() {
     let currentHour = new Date().getHours();
     return currentHour
 }
+
+var pageLoadedHour = getCurrentHour();
 
 window.onload = main();
